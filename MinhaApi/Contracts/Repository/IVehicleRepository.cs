@@ -9,6 +9,6 @@ namespace MinhaApi.Contracts.Repository
         Task Update(VehicleEntity vehicle);
         Task Delete(int id);
         Task<VehicleEntity> GetById(int id);
-        Task<IEnumerable<VehicleEntity>> Get();
+        Task<IEnumerable<VehicleDTO>> Get();
     }
 }

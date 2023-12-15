@@ -23,10 +23,10 @@ namespace MinhaApi.Repository
             await Execute(sql, new { id });
         }
 
-        public Task<IEnumerable<VehicleEntity>> Get()
+        public Task<IEnumerable<VehicleDTO>> Get()
         {      
             string sql = "SELECT * FROM VEHICLE";
-            return GetConnection().QueryAsync<VehicleEntity>(sql);            
+            return GetConnection().QueryAsync<VehicleDTO>(sql);            
         }
 
         public async Task<VehicleEntity> GetById(int id)
