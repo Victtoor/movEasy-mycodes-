@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MinhaApi.Contracts.Repository;
 
 namespace MinhaApi.Controllers
@@ -14,6 +15,7 @@ namespace MinhaApi.Controllers
             _cityRepository = cityRepository;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> Get()
         {
