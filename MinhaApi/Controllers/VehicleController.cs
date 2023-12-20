@@ -47,7 +47,7 @@ namespace MinhaApi.Controllers
             return Ok();
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {

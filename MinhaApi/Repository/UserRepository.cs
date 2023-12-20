@@ -11,8 +11,8 @@ namespace MinhaApi.Repository
         public async Task Add(UserDTO user)
         {
             string sql = @"
-                INSERT INTO user (Document, Telephone1, Telephone2, Name, LastName, Email, PasswordHash, Type, CNH, Photo)
-                            VALUE (@Document, @Telephone1, @Telephone2, @Name, @LastName, @Email, @PasswordHash, @Type, @CNH, @Photo)
+                INSERT INTO user (Document, Telephone1, Telephone2, Name, LastName, Email, PasswordHash, Type, CNH, Photo, Role)
+                            VALUE (@Document, @Telephone1, @Telephone2, @Name, @LastName, @Email, @PasswordHash, @Type, @CNH, @Photo, @Role)
             ";
             await Execute(sql, user);
         }
@@ -49,6 +49,7 @@ namespace MinhaApi.Repository
                        Type = @Type,
                        CNH = @CNH,
                        Photo - @Photo
+                       Role = @Role
                  WHERE Id = @Id
             ";
             await Execute(sql, user);
@@ -60,7 +61,8 @@ namespace MinhaApi.Repository
             UserEntity userLogin = await GetConnection().QueryFirstAsync<UserEntity>(sql, user);
             return new UserTokenDTO
             {
-                Token = Authentication.GenerateToken(userLogin)
+                Token = Authentication.GenerateToken(userLogin),
+                User = userLogin
             };
         }
     }
